@@ -28,6 +28,9 @@ describe 'nginx::default' do
       expect(chef_run).to enable_service "nginx"
     end
 
+    it 'start nginx service' do
+      expect(chef_run).to start_service "nginx"
+    end
 
   end
   end
