@@ -15,15 +15,25 @@ describe 'nginx::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+
+    it 'run apt-get update' do
+      expect(chef_run).to update_apt_update 'update_sources'
+    end
+
+    it 'should install nginx' do
+      expect(chef_run).to install_package "nginx"  #run chef with recipe and check if there is nginx installed
+    end
+
+
   end
 
-  context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'centos', '7'
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
+  # context 'When all attributes are default, on CentOS 7' do
+  #   # for a complete list of available platforms and versions see:
+  #   # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
+  #   platform 'centos', '7'
+  #
+  #   it 'converges successfully' do
+  #     expect { chef_run }.to_not raise_error
+  #   end
   end
 end
