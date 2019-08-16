@@ -24,6 +24,10 @@ describe 'nginx::default' do
       expect(chef_run).to install_package "nginx"  #run chef with recipe and check if there is nginx installed
     end
 
+    it 'enable nginx service' do
+      expect(chef_run).to enable_service "nginx"
+    end
+
 
   end
   end
