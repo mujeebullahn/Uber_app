@@ -14,3 +14,12 @@ end
 describe port(80), :skip do
   it { should_not be_listening }
 end
+
+describe service "nginx" do  #get rid of the skip part so its listening
+  it { should be_running }
+  it { should be_enabled }
+end
+
+describe http('http://localhost',enable_remote_worker: true) do
+  its('status'){ should cmp 502 }
+end
